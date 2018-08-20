@@ -29,10 +29,24 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
   }
 
   .card-header{
     font-family: 'Permanent Marker', cursive;
     font-size: 20px;
     text-align: center;
+  }
+
+  .icon{
+      height: 150px;
+      width: auto;
+      display: flex;
+      align-items: center;
+      padding: 1em;
+  }
+
+  .combat{
+      margin-left: 35px;
+      margin-right: 35px;
   }
