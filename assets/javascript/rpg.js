@@ -24,9 +24,11 @@ $(document).ready(function () {
             health: 190,
             attackValue: 25,
             damageValue: 15,
-        },
-    }
+        }
+    };
 
-
-
+//Moving characters from group to combat area//
+$('.arena').on('click', function() {
+    gregg.appendTo(".arena");
+})
 })
