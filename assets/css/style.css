@@ -1,0 +1,38 @@
+
+header{
+    width: 100%;
+    text-align: center;
+    background-color: rgba(58,166,235,0.7);
+    height: 115px;
+}
+
+.logo{
+    height: 100px;
+    width: auto;
+    display:inline-block;
+    margin: 0 auto;
+    padding: 15px;
+    z-index: 0;
+}
+
+.attackPop{
+    position: relative;
+    z-index: 1000;
+    opacity: 0.5;
+    height: 75px;
+    width: auto;
+    transform: rotate(35deg);
+    background-image: none !important;
+}
+
+.card-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-header{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 20px;
+    text-align: center;
+  }
