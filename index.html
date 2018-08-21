@@ -20,59 +20,48 @@
     </header>
 
     <!-- card group below has all players together upon start of game -->
+
     <div class="card-group">
-        <div class="card border-secondary mb-3" style="max-width: 18rem;">
-            <div class="card-header bg-transparent border-secondary">Bollo</div>
-            <div class="card-body text-success">
-                <p class="card-title"></p>
-                <p class="card-text">
-                    <img src="assets/images/bollo.jpg" class="icon">
-                </p>
-            </div>
-            <div class="card-footer bg-transparent border-secondary">Health: 170</div>
-        </div>
-
-        <div class="card border-secondary mb-3" style="max-width: 18rem;">
-            <div class="card-header bg-transparent border-secondary">Naboo</div>
-            <div class="card-body text-success">
-                <p class="card-title"></p>
-                <p class="card-text">
-                    <img src="assets/images/naboo.jpg" class="icon">
-                </p>
-            </div>
-            <div class="card-footer bg-transparent border-secondary">Health: 190</div>
-        </div>
-
-        <div class="card border-secondary mb-3" style="max-width: 18rem;">
-            <div class="card-header bg-transparent border-secondary">Howard Moon</div>
-            <div class="card-body text-success">
-                <p class="card-title"></p>
-                <p class="card-text">
-                    <img src="assets/images/howard-moon.jpg" class="icon">
-                </p>
-            </div>
-            <div class="card-footer bg-transparent border-secondary">Health: 100</div>
-        </div>
-
-        <div class="card border-secondary mb-3" style="max-width: 18rem;">
-            <div class="card-header bg-transparent border-secondary">Old Gregg</div>
-            <div class="card-body text-success">
-                <p class="card-title"></p>
-                <p class="card-text">
-                    <img src="assets/images/old-gregg.jpg" class="icon">
-                </p>
-            </div>
-            <div class="card-footer bg-transparent border-secondary">Health: 175</div>
-        </div>
     </div>
+
 
     <!-- Combat Zone -->
     <div>
         <div class="card combat">
-            <div class="card-body">
-                3, 2, 1, Fight!
+            <div class="card-body arena">
+<!-- Your Player -->
+                <div class="combat">
+                    <div class="row">
+                        <h3>
+                            Your Character
+                        </h3>
+                        <div class="col your-character">
+                        </div>
+                    </div>
+<!-- Opponents -->
+                    <div class="row">
+                            <h3>
+                                Opponents to defeat
+                            </h3>
+                        <div class="col available-oponents">
+                        </div>
+                    </div>
+<!-- Defender -->
+                    <div class="row">
+                            <h3>
+                                Defender
+                            </h3>
+                        <div class="col defender">
+                        </div>
+                    </div>
+<!-- Button to begin duel -->
+                    <button>Fight!</button>
+                    <button>Reset</button>
+                </div>
             </div>
+
         </div>
+    </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
