@@ -39,14 +39,15 @@ header{
   }
 
   .icon{
-      height: 150px;
-      width: auto;
-      display: flex;
-      align-items: center;
-      padding: 1em;
+    height: 150px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    padding: 1em;
   }
 
   .combat{
-      margin-left: 35px;
-      margin-right: 35px;
+     margin-top: 2em; 
+    margin-left: 35px;
+    margin-right: 35px;
   }
