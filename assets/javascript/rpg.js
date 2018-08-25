@@ -2,16 +2,18 @@ $(document).ready(function() {
 
     let selected = false; //set to true after user selects character
     let enemySelected = false; //set to true after enemies are moved
-    let duelStart = false;
-    let numAlive = 3;
+    var playerHealh;
+    var defenderHealth;
+    var playerAttack;
+    var defenderAttack
 
-    let characters = [
+        let characters = [
         {
         id: 0,
         name: "Old Gregg",
         health: 200,
-        attackValue: 25, //how much damage the character can do to other characters
-        damageValue: 15, //how much damage the character receives when attacked
+        attackValue: 30, //how much damage the character can do to other characters
+        damageValue: 15, //how much damage the character receives from attack
         img: "assets/images/old-gregg.jpg"
         },
         {
@@ -27,7 +29,7 @@ $(document).ready(function() {
         name: "Howard Moon",
         health: 130,
         attackValue: 10,
-        damageValue: 25,
+        damageValue: 10,
         img: "assets/images/howard-moon.jpg"
         },
         {
@@ -35,37 +37,27 @@ $(document).ready(function() {
         name: "Naboo",
         health: 190,
         attackValue: 25,
-        damageValue: 15,
+        damageValue: 20,
         img: "assets/images/naboo.jpg"
         }
     ];
 
-  let charChoice; // character chosen by player
-  let opponents = []; // all available opponents queued
-  let defender; // current opponent to battle
-  let attack = 10; // baseline amount of damage player can do
-  let damage; // damage done to player by opponents
-  let victory = ""; // message to be displayed upon win
-  let defeat = ""; // message to be displayed upon loss
-
   // loading all characters to card group area
   characters.map(character => {
     console.log(character.name);
-    console.log(character.health);
+    console.log("Character Health:", character.health);
+    console.log("Character Attack Value:", character.attackValue);
 
-    let charCard = `<div class="card border-secondary mb-3 ${
-      character.name
-    }" style="max-width: 18rem;" id="character-${character.id}"> 
-                <div class="card-header bg-transparent border-secondary">${
-                  character.name
-                }</div>
-                    <div class="card-body text-success">
-                        <img src=${character.img} class="icon">   
-                    </div>
-                <div class="card-footer bg-transparent border-secondary">Health: ${
-                  character.health
-                }</div>
-            </div>`;
+    let charCard = 
+        `<div class="card border-secondary mb-3 name ${character.name}" data-attack="${character.attackValue}" data-myval="${character.health}"
+        style="max-width: 18rem;" id="character-${character.id}"> 
+            <div class="card-header bg-transparent border-secondary">${character.name}</div>
+                <div class="card-body text-success">
+                    <img src=${character.img} class="icon">   
+                </div>
+            <div class="card-footer bg-transparent border-secondary" id="health" >Health: ${character.health}</div>
+        </div>`;
+
     $(charCard).appendTo(".card-group").html; // displays character cards to group from charCard script
     $(document).on("click", `#character-${character.id}`, function(event){
         if(selected === false){
@@ -81,7 +73,6 @@ $(document).ready(function() {
     
 
     // begin click to choose character
-    
     function selectChar(selectedCard) {
         console.log(selectedCard);
         $(selectedCard).appendTo(".your-character")
@@ -90,16 +81,37 @@ $(document).ready(function() {
 
     // move unselected characters to opponents to defeat
     function opponentsMove() {
-       let banana = $('.card-group');
-        console.log(banana);
-        $(banana).appendTo('.available-oponents');
+        let opponents = $('.card-group');
+        console.log(opponents);
+        $(opponents).appendTo('.available-oponents');
     }
 
     // select enemy
     function selectEnemy(badGuy) {
         $(badGuy).appendTo('.defender');
+        console.log("bad guy:", badGuy);
         enemySelected = true;
     }
+
+    // begin duel
+    $('#fight').on('click', function(){
+        let defenderHealth = $('.defender').children('.card').data('myval');
+        console.log("defender health:", defenderHealth);
+        let playerHealth = $('.your-character').children('.card').data('myval');
+        console.log("player health:", playerHealth);
+        let defenderAttack = $('.defender').children('.card').data('attack');
+        console.log("defender attack:", defenderAttack);
+        let playerAttack = $('.your-character').children('.card').data('attack');
+        console.log("player attack:", playerAttack);
+        
+        let newDefHealth = defenderHealth - playerAttack;
+        console.log("new defender health", newDefHealth);
+        $('.defender').children('.card').children('#health').html("Health:", parseInt(newDefHealth));
+        let newPlayerHealth = playerHealth - defenderAttack;
+        $('.your-character').children('.myval').append(newPlayerHealth);
+
+    })
+        
 
 
       
