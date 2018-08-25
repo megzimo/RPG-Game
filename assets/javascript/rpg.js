@@ -55,7 +55,7 @@ $(document).ready(function() {
                 <div class="card-body text-success">
                     <img src=${character.img} class="icon">   
                 </div>
-            <div class="card-footer bg-transparent border-secondary" id="health" >Health: ${character.health}</div>
+            <div class="card-footer bg-transparent border-secondary" id="health" > ${character.health}</div>
         </div>`;
 
     $(charCard).appendTo(".card-group").html; // displays character cards to group from charCard script
@@ -104,11 +104,11 @@ $(document).ready(function() {
         let playerAttack = $('.your-character').children('.card').data('attack');
         console.log("player attack:", playerAttack);
         
-        let newDefHealth = defenderHealth - playerAttack;
-        console.log("new defender health", newDefHealth);
-        $('.defender').children('.card').children('#health').html("Health:", parseInt(newDefHealth));
-        let newPlayerHealth = playerHealth - defenderAttack;
-        $('.your-character').children('.myval').append(newPlayerHealth);
+        // decrease in health points begins here
+        defenderHealth -= playerAttack;
+        $('.defender').find('#health').text(defenderHealth);
+        playerHealth -= defenderAttack;
+        $('.your-character').find('#health').text(playerHealth);
 
     })
         
