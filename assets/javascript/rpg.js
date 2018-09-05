@@ -2,60 +2,63 @@ $(document).ready(function() {
 
     let selected = false; //set to true after user selects character
     let enemySelected = false; //set to true after enemies are moved
+    let playerAlive = true;
+    let enemies = 3;
     var playerHealh;
     var defenderHealth;
     var playerAttack;
     var defenderAttack
 
         let characters = [
-        {
-        id: 0,
-        name: "Old Gregg",
-        health: 200,
-        attackValue: 30, //how much damage the character can do to other characters
-        damageValue: 15, //how much damage the character receives from attack
-        img: "assets/images/old-gregg.jpg"
-        },
-        {
-        id: 1,
-        name: "Bollo",
-        health: 180,
-        attackValue: 25,
-        damageValue: 15,
-        img: "assets/images/bollo.jpg"
-        },
-        {
-        id: 2,
-        name: "Howard Moon",
-        health: 130,
-        attackValue: 10,
-        damageValue: 10,
-        img: "assets/images/howard-moon.jpg"
-        },
-        {
-        id: 3,
-        name: "Naboo",
-        health: 190,
-        attackValue: 25,
-        damageValue: 20,
-        img: "assets/images/naboo.jpg"
-        }
-    ];
+            {
+            id: 0,
+            name: "Old Gregg",
+            health: 200,
+            attackValue: 35, //how much damage the character can do to other characters
+            powerUpAttack: 15,
+            img: "assets/images/old-gregg.jpg"
+            },
+            
+            {
+            id: 1,
+            name: "Bollo",
+            health: 170,
+            attackValue: 20,
+            powerUpAttack: 15,
+            img: "assets/images/bollo.jpg"
+            },
+
+            {
+            id: 2,
+            name: "Howard Moon",
+            health: 130,
+            attackValue: 3,
+            powerUpAttack: 10,
+            img: "assets/images/howard-moon.jpg"
+            },
+
+            {
+            id: 3,
+            name: "Naboo",
+            health: 175,
+            attackValue: 15,
+            powerUpAttack: 15,
+            img: "assets/images/naboo.jpg"
+            }
+        ];
 
   // loading all characters to card group area
   characters.map(character => {
     console.log(character.name);
-    console.log("Character Health:", character.health);
-    console.log("Character Attack Value:", character.attackValue);
 
     let charCard = 
-        `<div class="card border-secondary mb-3 name ${character.name}" data-attack="${character.attackValue}" data-myval="${character.health}"
+        `<div class="card mb-3 name ${character.name}" data-attack="${character.attackValue}" data-myval="${character.health}"
         style="max-width: 18rem;" id="character-${character.id}"> 
-            <div class="card-header bg-transparent border-secondary">${character.name}</div>
-                <div class="card-body text-success">
-                    <img src=${character.img} class="icon">   
+            <div class="card-header ">${character.name}</div>
+                <div class="card-body ">
+                    <img src=${character.img} class="mx-auto d-block icon">   
                 </div>
-            <div class="card-footer bg-transparent border-secondary health">Health: ${character.health}</div>
+            <div class="card-footer health">Health: ${character.health}</div>
         </div>`;
 
     $(charCard).appendTo(".card-group").html; // displays character cards to group from charCard script
@@ -70,6 +73,16 @@ $(document).ready(function() {
         });
     }); // ENDS character map
     
+    function endGame(){
+        if(playerAlive){
+            $(".messageBoard").text("Good job! You've earned some Bailey's in a shoe.");
+            $(".messageBoard").prepend('<img class="baileys" src="assets/images/baileys.png" />')
+        }
+        else{
+            $(".messageBoard").html("<strong>You have been defeated</strong>");
+        }
+        $('.available-opponents').hide();
+    }
     
 
     // begin click to choose character
@@ -87,11 +100,18 @@ $(document).ready(function() {
     }
 
     // select enemy
-    function selectEnemy(badGuy) {
-        $(badGuy).appendTo('.defender');
-        console.log("bad guy:", badGuy);
-        enemySelected = true;
+    if(enemies > 0){
+        function selectEnemy(badGuy) {
+            $(badGuy).appendTo('.defender');
+            console.log("bad guy:", badGuy);
+            enemySelected = true;
+            console.log("enemy selected:", enemySelected);
+        }
     }
+    // reset button
+    $("#reset").on('click', function() {
+        location.reload();
+    });
 
     // begin duel
     $('#fight').on('click', function(){
@@ -106,23 +126,46 @@ $(document).ready(function() {
         
         // decrease in health points begins here
         defenderHealth -= playerAttack;
-        $('.defender').find('.health').text('Health:' + defenderHealth);
+        $('.defender').find('.health').text('Health: ' + defenderHealth);
         $('.defender').find('.card').data('myval', defenderHealth);
 
         playerHealth -= defenderAttack;
-        $('.your-character').find('.health').text('Health:' + playerHealth);
+        $('.your-character').find('.health').text('Health: ' + playerHealth);
         $('.your-character').find('.card').attr('data-myval', playerHealth);
-
+        
         if(defenderHealth <= 0){
             $('.defender').empty();
+            enemies -= 1;
+            console.log('enemies:', enemies);
+            enemySelected = false;
+            console.log("enemy selected:", enemySelected);
+            return;
         }
+// add class and remove class active defender ----------------------------------------------NOTES FROM B TO FIX THE NaN value--------------------------------
+
+        // if(enemySelected === false){
+        //     $('#fight').unbind('click');
+        // }
+
+        if(playerHealth <= 0){
+            alert("YOU SUCK!!! Maybe try again");
+            playerAlive = false;
+            $('#fight').off('click');
+            endGame();
+            //reset button in this conditional that doesn't allow you to move the opponents to defender area
+        }
+        if(enemies === 0){
+            alert("YOU Win!! Praise Be.");
+            endGame();
+        }
+    
 
     })
         
 
 
       
-    //clear characterArea, write selectedChar back to characterArea, write enemies to enemyArea
+//     //clear characterArea, write selectedChar back to characterArea, write enemies to enemyArea
     
 
 

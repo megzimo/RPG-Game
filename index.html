@@ -12,60 +12,61 @@
     <title>Document</title>
 </head>
 
-<body>
-    
-    <header>
-        <img src="assets/images/logo.jpg" alt="Mighty Boosh Logo" class="logo">
-        <img src="assets/images/attack.jpg" alt="attack" class="attackPop">
-    </header>
+<body class="body">
 
+    <header>    
+        <img src="assets/images/logo.jpg" alt="Mighty Boosh Logo" class="logo">
+        <img src="assets/images/attack.jpg" alt="attack" class="attackPop">    
+    </header>
     <!-- card group below has all players together upon start of game -->
 
     <div class="card-group">
     </div>
 
 
-    <!-- Combat Zone -->
-    <div>
-        <div class="card combat">
-            <div class="card-body arena">
+<!-- Combat Zone -->
+        <div class=" combat">
+            <div class=" arena">
 <!-- Your Player -->
                 <div class="combat">
                     <div class="row">
-                        <h3>
-                            Your Character
-                        </h3>
-                        <div class="col your-character">
+                        <div class="col-6 your-character">
+                            <h5 class="text">Your Character</h5>
+                        </div>
+<!-- Defender -->
+                        <div class="col-6 defender">
+                            <h5 class="text">Defender</h5>
                         </div>
                     </div>
 <!-- Opponents -->
                     <div class="row">
-                            <h3>
-                                Opponents to defeat
-                            </h3>
-                        <div class="col available-oponents">
-                        </div>
-                    </div>
-<!-- Defender -->
-                    <div class="row">
-                            <h3>
-                                Defender
-                            </h3>
-                        <div class="col defender">
+                        <div class="col -12 available-oponents">
+                            <h5 class="text">Opponents to defeat</h5>
                         </div>
                     </div>
 <!-- Button to begin duel -->
-                    <button id="fight">Fight!</button>
-                    <button>Reset</button>
+                    <div class="col-6">
+                        <button id="fight">Fight!</button>
+                        <button id="reset">Reset</button>
+                    </div>
+<!--Message Board-->
+                    <div class="row">
+                        <div class="col-6">
+                            <h2 class="messageBoard"></h2>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-
         </div>
-    </div>
-    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="assets/javascript/rpg.js"></script>
+
+<footer>
+    <p class="copywrite">Copyright &COPY; Meg Gallagher</p>
+</footer>
+        
 </body>
 
 </html>

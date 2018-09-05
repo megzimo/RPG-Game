@@ -1,16 +1,22 @@
-
+.body{
+    background-image: url("https://bit.ly/2PBu8kd");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    height: 850px;
+    }   
 
 header{
     width: 100%;
     text-align: center;
-    background-color: rgba(58,166,235,0.7);
-    height: 115px;
+    height: 250px;
 }
 
 .logo{
-    height: 100px;
+    position: relative;
+    height: 175px;
     width: auto;
-    display:inline-block;
     margin: 0 auto;
     padding: 15px;
     z-index: 0;
@@ -18,37 +24,54 @@ header{
 
 .attackPop{
     position: relative;
-    z-index: 1000;
-    opacity: 0.5;
-    height: 75px;
+    height: 100px;
     width: auto;
     transform: rotate(35deg);
-    background-image: none !important;
 }
 
+
 .card-group{
-    display: flex;
-    justify-content: center;
+    width:80%;
     align-items: center;
-    margin-top: 10px;
+    margin-left: 12%;
   }
 
   .card-header{
     font-family: 'Permanent Marker', cursive;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
+    height: 1.5em;
   }
 
   .icon{
-    height: 150px;
+    height: 100px;
     width: auto;
-    display: flex;
-    align-items: center;
-    padding: 1em;
+    padding: .3em;
   }
 
   .combat{
-     margin-top: 2em; 
-    margin-left: 35px;
-    margin-right: 35px;
+    margin-top: 3em; 
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 100px;
   }
+
+  .baileys{
+      height: 150px;
+      width: auto;
+  }
+
+  footer{
+    color: whitesmoke;
+    position: relative;
+    bottom: 0;
+    width: 95%;
+    text-align: center;
+    font-family: 'Audiowide', cursive;
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.text{
+    color: rgba(245, 245, 245, 0.85);
+}
